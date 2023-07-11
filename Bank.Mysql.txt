@@ -1,0 +1,85 @@
+create database Bank;
+use bank;
+create table Bank.Workers
+(
+W_Id int,
+W_Name varchar(90)not null,
+W_position varchar(50),
+W_Salary int check (W_Salary>10000),
+Branch_Name varchar (40) not null,
+Branch_id varchar(10) primary key,
+Phone_No varchar(10));
+
+insert into  Bank.Workers values (1,"Pravinkumar","Branch Manager",55000,"Rasipuram","R463","9862365879");
+insert into  Bank.Workers values (2,"Vidhya","Investment Banker",43000,"Salem","S263","8862365879");
+insert into  Bank.Workers values (3,"Vasanthan","Equity Analyst",35000,"Theni","T463","9762365879");
+insert into  Bank.Workers values (4,"Sugan","Financial Accountant",47000,"Namakkal","N363","8662365879");
+insert into  Bank.Workers values (5,"Sangami","Loan Officer",37000,"Nilgris","N863","9876365879");
+insert into  Bank.Workers values (6,"Pranesh","Consultant",35000,"Erode","E763","9982365879");
+insert into  Bank.Workers values (7,"Karthikeyan","Budget Analyst",48000,"Trichy","T693","8262365879");
+insert into  Bank.Workers values (8,"Shyamala","RBI Assist",38000,"Trichengode","T763","9262365879");
+insert into  Bank.Workers values (9,"Mithraa","Internal Audit",53000,"Thanjavur","T963","9562365879");
+insert into  Bank.Workers values (10,"Pravin","Business Analyst",51000,"Coimbatore","C863","8062365879");
+
+select*from bank.workers;
+select * from Bank.Workers order by W_Id;
+
+create table customer 
+(
+SignNo int,
+C_Acc int not null,
+C_PIN int,
+C_Name varchar(30),
+Acc_Type varchar(40),
+Balance_Amount int,
+C_PAN varchar (50) ,
+C_Address varchar(60),
+Branch_id varchar(10),
+C_Phone varchar(10));
+select * from customer;
+
+
+
+insert into customer values(1,25678,"8900","Navaneethan","Savings",20000,"Nav123","Rasipuram","R463","9876567891");
+insert into customer values(2,24678,"3000","Sanjay","Savings",350000,"san523","Theni","T463","9876567871");
+insert into customer values(3,23678,"2400","Dharnesh","Savings",7000,"dhar523","Coimbatore","C863","9875567891");
+insert into customer values(4,22678,"2050","Jeeva","Savings",3000,"Jee339","Namakkal","N363","9876567791");
+insert into customer values(5,21678,"2500","Janani","Savings",9000,"jan623","Thanjavur","T963","9876568891");
+insert into customer values(6,25667,"1600","Monika","Savings",5400,"Mon923","Nilgris","N863","9876565891");
+insert into customer values(7,25778,"2300","Arjun","Savings",8000,"Arj120","Nilgris","N863","9876567591");
+insert into customer values(8,25678,"2700","Shruthi","Savings",67000,"Shr093","Namakkal","N363","987437891");
+insert into customer values(9,25578,"2000","Sridharshan","Savings",2000,"Sri873","Erode","E763","9387656781");
+insert into customer values(10,29678,"6000","Ajith","Savings",24000,"Aji563","Rasipuram","R463","9876577891");
+insert into customer values(11,26578,"7100","Ragavi","Savings",20000,"Nav123","Trichy","T693","9876567891");
+insert into customer values(12,25478,"2900","Sree","Savings",20000,"Nav123","Trichengode","T763","9876567891");
+insert into customer values(13,29178,"7600","Naveen","Current",32000,"Nav293","Salem","S263","9878778991");
+insert into customer values(14,78728,"7690","Vrushaali","Current",9070,"Vru043","Coimbatore","C863","9878778991");
+insert into customer values(15,28778,"7380","Abhimanyu","Current",3240,"Abhi303","Thanjavur","T963","9878778991");
+
+ select* from customer order by SignNo;
+DELETE FROM bank.customer WHERE SignNo=15;
+
+use bank;
+select 
+customer.SignNo,
+customer.C_Acc,
+customer.C_PIN,
+customer.C_Name,
+customer.Acc_Type,
+customer.Balance_Amount,
+customer.C_PAN,
+customer.C_Address,
+customer.Branch_id,
+customer.C_Phone,
+Workers.W_Id,
+Workers.W_Name,
+Workers.W_position,
+Workers.W_Salary,
+Workers.Branch_Name,
+Workers.Branch_id,
+Workers.Phone_No
+
+from customer
+inner Join Workers on Workers.Branch_id=customer.Branch_id;
+select*from customer order by branch_id;
+select*from customer order by SignNo;
